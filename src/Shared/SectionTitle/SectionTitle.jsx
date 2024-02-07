@@ -1,6 +1,6 @@
 const SectionTitle = ({ subHeading, mainHeading }) => {
   return (
-    <div className="w-4/12 text-center mx-auto mb-10">
+    <div className="w-4/12 text-center mx-auto mb-10 mt-20">
       <p
         className="text-[#D99904] text-xl italic mb-2"
         style={{ textShadow: "1px 2px 3px black" }}
