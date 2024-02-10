@@ -3,7 +3,7 @@ const SectionTitle = ({ subHeading, mainHeading }) => {
     <div className="w-4/12 text-center mx-auto mb-10 mt-20">
       <p
         className="text-[#D99904] text-xl italic mb-2"
-        style={{ textShadow: "1px 2px 3px black" }}
+        style={{ textShadow: "1px 2px 2px black" }}
       >
         ---{subHeading}---
       </p>
