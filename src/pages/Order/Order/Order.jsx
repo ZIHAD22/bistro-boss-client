@@ -1,7 +1,14 @@
+import Cover from "../../../Shared/Cover/Cover";
+import oderCoverImg from "../../../assets/shop/banner2.jpg";
+
 const Order = () => {
   return (
     <div>
-      <h1>this is oder page</h1>
+      <Cover
+        img={oderCoverImg}
+        title="Order Food"
+        des="Would you like to try a dish?"
+      />
     </div>
   );
 };

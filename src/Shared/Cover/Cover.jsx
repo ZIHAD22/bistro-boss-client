@@ -6,8 +6,8 @@ const Cover = ({ img, title, des }) => {
         backgroundImage: `url("${img}")`,
       }}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
-      <div className="hero-content text-center text-neutral-content">
+      <div className="hero"></div>
+      <div className="hero-content text-center text-neutral-content w-1/2 bg-opacity-60 bg-gray-700 rounded-lg">
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">{title}</h1>
           <p className="mb-5">{des}</p>
