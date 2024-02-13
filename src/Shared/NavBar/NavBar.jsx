@@ -4,7 +4,7 @@ import { router } from "../../Routes/Routes";
 const NavBar = () => {
   const navOptions = (
     <>
-      <li className={`mr-3 hover:text-[#EEFF25]`}>
+      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
         <NavLink
           to="/"
           className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
@@ -12,12 +12,36 @@ const NavBar = () => {
           Home
         </NavLink>
       </li>
-      <li>
+      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
         <NavLink
           to="/menu"
           className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
         >
           Menu
+        </NavLink>
+      </li>
+      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
+        <NavLink
+          to="/order"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
+          Order Food
+        </NavLink>
+      </li>
+      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
+          DASHBOARD
+        </NavLink>
+      </li>
+      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
+          CONTACT us
         </NavLink>
       </li>
     </>
