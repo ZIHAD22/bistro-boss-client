@@ -6,7 +6,11 @@ const Tabs = () => {
   const tabData = ["dessert", "pizza", "salad", "soup", "drinks"];
   const [activeTab, setActiveTab] = useState(0);
   const [loading, menu, filterMenu] = useMenu(tabData[activeTab]);
+
   console.log(filterMenu);
+  if (loading) {
+    return <h1>loading..........</h1>;
+  }
   return (
     <div className="mx-auto px-8 sm:px-0">
       <div className="mx-auto">

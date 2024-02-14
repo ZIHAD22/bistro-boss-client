@@ -1,4 +1,3 @@
-import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import coverImg1 from "../../../assets/menu/banner3.jpg";
 import coverImg2 from "../../../assets/menu/dessert-bg.jpeg";
 import coverImg3 from "../../../assets/menu/pizza-bg.jpg";
@@ -36,7 +35,7 @@ const Menu = () => {
         {/* dessert */}
         <MenuCategory
           filterMenu={desserts}
-          title="DESSERTS"
+          title="DESSERT"
           menuImg={coverImg2}
         />
       </div>
@@ -46,11 +45,11 @@ const Menu = () => {
       </div>
       <div>
         {/* salad */}
-        <MenuCategory filterMenu={salads} title="SALADS" menuImg={coverImg4} />
+        <MenuCategory filterMenu={salads} title="SALAD" menuImg={coverImg4} />
       </div>
       <div>
         {/* soup */}
-        <MenuCategory filterMenu={sopus} title="SOUPS" menuImg={coverImg5} />
+        <MenuCategory filterMenu={sopus} title="SOUP" menuImg={coverImg5} />
       </div>
     </div>
   );

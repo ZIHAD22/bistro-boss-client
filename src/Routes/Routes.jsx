@@ -22,6 +22,10 @@ export const router = createBrowserRouter([
         element: <Order />,
       },
       {
+        path: "/order/:category",
+        element: <Order />,
+      },
+      {
         path: "/dashboard",
         element: (
           <h1 className="flex items-center justify-center h-screen text-4xl text-red-600 uppercase">
