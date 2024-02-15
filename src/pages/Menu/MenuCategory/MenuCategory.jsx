@@ -27,7 +27,7 @@ const MenuCategory = ({ filterMenu, menuImg, title, des, sectionTitle }) => {
         ))}
       </div>
       <div className="text-center mt-4 mb-5">
-        <Link to={`/order`}>
+        <Link to={`/order/${title}`}>
           <button className="btn btn-outline border-0 border-b-2 btn-lg px-20">
             ORDER YOUR FAVOURITE FOOD
           </button>

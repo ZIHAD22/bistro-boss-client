@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useMenu from "../../hooks/useMenu";
 import OrderCard from "../../pages/Order/OrderCard/OrderCard";
+import { useParams } from "react-router-dom";
 
 const Tabs = () => {
+  const { category } = useParams();
+  console.log(category);
   const tabData = ["dessert", "pizza", "salad", "soup", "drinks"];
+
   const [activeTab, setActiveTab] = useState(0);
   const [loading, menu, filterMenu] = useMenu(tabData[activeTab]);
+
+  useEffect(() => {
+    if (category) {
+      setActiveTab(tabData.indexOf(category.toLocaleLowerCase()));
+    }
+  }, [category]);
 
   console.log(filterMenu);
   if (loading) {
