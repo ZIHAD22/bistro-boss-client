@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 const Tabs = () => {
   const { category } = useParams();
   console.log(category);
-  const tabData = ["dessert", "pizza", "salad", "soup", "drinks"];
+  const tabData = ["dessert", "pizza", "salad", "soup", "drinks", "offered"];
 
   const [activeTab, setActiveTab] = useState(0);
   const [loading, menu, filterMenu] = useMenu(tabData[activeTab]);
