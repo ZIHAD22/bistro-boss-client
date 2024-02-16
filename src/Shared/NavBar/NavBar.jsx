@@ -1,7 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { router } from "../../Routes/Routes";
 
 const NavBar = () => {
+  const location = useLocation();
+  const isLogin = location.pathname.includes("login");
   const navOptions = (
     <>
       <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
@@ -44,18 +46,16 @@ const NavBar = () => {
           CONTACT us
         </NavLink>
       </li>
-      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
+      {/* <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
         <NavLink
           to="/login"
           className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
         >
           login
         </NavLink>
-      </li>
+      </li> */}
     </>
   );
-
-  console.log(router.path);
 
   return (
     <div>
@@ -91,7 +91,15 @@ const NavBar = () => {
           <ul className="menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {isLogin ? (
+            <Link to="/signup" className="btn uppercase">
+              Sign Up
+            </Link>
+          ) : (
+            <Link to="/login" className="btn uppercase">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>

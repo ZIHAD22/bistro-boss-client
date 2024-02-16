@@ -1,36 +1,24 @@
-import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { BiShow } from "react-icons/bi";
 import { FaRegEyeSlash } from "react-icons/fa";
 import loginBgImg from "../../assets/others/authentication.png";
 import loginHeroImg from "../../assets/others/authentication2.png";
-import { useForm } from "react-hook-form";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const Login = () => {
+const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
-  const [captchaError, setCaptchaError] = useState(false);
+  console.log(showPass);
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = ({ email, password, captcha }) => {
-    if (validateCaptcha(captcha)) {
-      console.log({ email, password });
-      reset();
-      setCaptchaError(false);
-    } else {
-      setCaptchaError(true);
-    }
+
+  const onSubmit = ({ name, email, password: pass }) => {
+    console.log({ name, email, pass });
+    reset();
   };
+
   const handleShowPass = () => {
     setShowPass((pre) => !pre);
   };
-
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
 
   return (
     <div
@@ -40,7 +28,7 @@ const Login = () => {
       }}
     >
       <div
-        className="hero-content flex-col lg:flex-row justify-between p-10 rounded-lg"
+        className="hero-content flex-col lg:flex-row-reverse justify-between p-10 rounded-lg"
         style={{ boxShadow: "1px 2px 45px -19px" }}
       >
         <div className="text-center lg:text-left">
@@ -50,6 +38,18 @@ const Login = () => {
           <h1 className="text-center text-4xl py-4 font-bold">Login</h1>
           <div className="card w-[400px]">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("name")}
+                  placeholder="Name"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -62,7 +62,7 @@ const Login = () => {
                   required
                 />
               </div>
-              <div className="form-control mb-[23px]">
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
@@ -88,37 +88,16 @@ const Login = () => {
                   </div>
                 </div>
               </div>
-              <div className="form-control mt-3">
-                <div>
-                  <LoadCanvasTemplate />
-                </div>
-              </div>
-              <div className="form-control">
-                <input
-                  type="text"
-                  {...register("captcha")}
-                  placeholder="Type Here"
-                  className={`input input-bordered ${
-                    captchaError ? "input-error" : ""
-                  }`}
-                  required
-                />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control">
+              <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">
-                  Login
+                  Sign Up
                 </button>
               </div>
               <div>
                 <p className="text-[#D1A054]">
-                  <span>New here?</span>
-                  <Link to="/signup" className="font-bold pl-2">
-                    Create a New Account
+                  <span>Already registered?</span>
+                  <Link to="/login" className="font-bold pl-2">
+                    Go to Log In
                   </Link>
                 </p>
               </div>
@@ -130,4 +109,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
