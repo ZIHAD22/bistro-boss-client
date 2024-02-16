@@ -44,6 +44,14 @@ const NavBar = () => {
           CONTACT us
         </NavLink>
       </li>
+      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
+        <NavLink
+          to="/login"
+          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
+        >
+          login
+        </NavLink>
+      </li>
     </>
   );
 
