@@ -15,15 +15,12 @@ const Menu = () => {
   const sopus = menu.filter((item) => item.category === "soup");
   const offered = menu.filter((item) => item.category === "offered");
 
-  if (loading) {
-    return <h1>loading.....</h1>;
-  }
-
   return (
     <div className="">
       <div>
         {/* main cover */}
         <MenuCategory
+          loading={loading}
           filterMenu={offered}
           title="Our Menu"
           des="Would you like to try a dish?"
@@ -34,6 +31,7 @@ const Menu = () => {
       <div>
         {/* dessert */}
         <MenuCategory
+          loading={loading}
           filterMenu={desserts}
           title="DESSERT"
           menuImg={coverImg2}
@@ -41,15 +39,30 @@ const Menu = () => {
       </div>
       <div>
         {/* pizza */}
-        <MenuCategory filterMenu={pizzas} title="PIZZA" menuImg={coverImg3} />
+        <MenuCategory
+          loading={loading}
+          filterMenu={pizzas}
+          title="PIZZA"
+          menuImg={coverImg3}
+        />
       </div>
       <div>
         {/* salad */}
-        <MenuCategory filterMenu={salads} title="SALAD" menuImg={coverImg4} />
+        <MenuCategory
+          loading={loading}
+          filterMenu={salads}
+          title="SALAD"
+          menuImg={coverImg4}
+        />
       </div>
       <div>
         {/* soup */}
-        <MenuCategory filterMenu={sopus} title="SOUP" menuImg={coverImg5} />
+        <MenuCategory
+          loading={loading}
+          filterMenu={sopus}
+          title="SOUP"
+          menuImg={coverImg5}
+        />
       </div>
     </div>
   );

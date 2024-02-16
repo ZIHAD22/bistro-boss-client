@@ -3,7 +3,17 @@ import Cover from "../../../Shared/Cover/Cover";
 import MenuItem from "../../../Shared/MenuItem/MenuItem";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 
-const MenuCategory = ({ filterMenu, menuImg, title, des, sectionTitle }) => {
+const MenuCategory = ({
+  filterMenu,
+  menuImg,
+  title,
+  des,
+  sectionTitle,
+  loading,
+}) => {
+  // if (loading) {
+  //   return <h1>loading.....</h1>;
+  // }
   //   console.log(filterMenu);
   return (
     <div>
@@ -21,11 +31,17 @@ const MenuCategory = ({ filterMenu, menuImg, title, des, sectionTitle }) => {
       {sectionTitle && (
         <SectionTitle mainHeading="TODAY'S OFFER" subHeading="Don't miss" />
       )}
-      <div className="grid md:grid-cols-2 gap-4 my-10">
-        {filterMenu.map((item) => (
-          <MenuItem key={item._id} item={item} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="flex justify-center items-center my-20 text-4xl">
+          loading...
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 gap-4 my-10">
+          {filterMenu.map((item) => (
+            <MenuItem key={item._id} item={item} />
+          ))}
+        </div>
+      )}
       <div className="text-center mt-4 mb-5">
         <Link to={`/order/${title === "Our Menu" ? "offered" : title}`}>
           <button className="btn btn-outline border-0 border-b-2 btn-lg px-20">
