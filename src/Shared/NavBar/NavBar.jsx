@@ -1,9 +1,19 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { router } from "../../Routes/Routes";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const NavBar = () => {
+  const navigator = useNavigate();
+  const { user, logOutUser } = useContext(AuthContext);
   const location = useLocation();
   const isLogin = location.pathname.includes("login");
+  const handleLogOut = () => {
+    const result = logOutUser();
+    if (result) {
+      navigator("/login");
+    }
+  };
+
   const navOptions = (
     <>
       <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
@@ -56,7 +66,6 @@ const NavBar = () => {
       </li> */}
     </>
   );
-
   return (
     <div>
       <div className="navbar fixed max-w-screen-2xl z-10 bg-opacity-50  bg-black  text-white">
@@ -91,7 +100,11 @@ const NavBar = () => {
           <ul className="menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          {isLogin ? (
+          {user ? (
+            <span onClick={handleLogOut} className="btn uppercase">
+              Log Out
+            </span>
+          ) : isLogin ? (
             <Link to="/signup" className="btn uppercase">
               Sign Up
             </Link>

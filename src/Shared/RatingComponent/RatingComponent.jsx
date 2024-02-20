@@ -4,7 +4,6 @@ import "@smastrom/react-rating/style.css";
 import { useState } from "react";
 
 const RatingComponent = ({ reviewRating }) => {
-  console.log(reviewRating);
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
   function getRating(rating) {

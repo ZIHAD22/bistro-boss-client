@@ -3,16 +3,21 @@ import { BiShow } from "react-icons/bi";
 import { FaRegEyeSlash } from "react-icons/fa";
 import loginBgImg from "../../assets/others/authentication.png";
 import loginHeroImg from "../../assets/others/authentication2.png";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const SignUp = () => {
+  const navigator = useNavigate();
+  const { createUser } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
-  console.log(showPass);
   const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = ({ name, email, password: pass }) => {
-    console.log({ name, email, pass });
+  const onSubmit = async ({ name, email, password: pass }) => {
+    const user = await createUser(email, pass, name);
+    if (user.uid) {
+      navigator("/");
+    }
     reset();
   };
 

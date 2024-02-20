@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 
 const Tabs = () => {
   const { category } = useParams();
-  console.log(category);
   const tabData = ["dessert", "pizza", "salad", "soup", "drinks", "offered"];
 
   const [activeTab, setActiveTab] = useState(0);
@@ -16,8 +15,6 @@ const Tabs = () => {
       setActiveTab(tabData.indexOf(category.toLocaleLowerCase()));
     }
   }, [category]);
-
-  console.log(filterMenu);
   if (loading) {
     return <h1>loading..........</h1>;
   }

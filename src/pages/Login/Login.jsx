@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BiShow } from "react-icons/bi";
 import { FaRegEyeSlash } from "react-icons/fa";
 import loginBgImg from "../../assets/others/authentication.png";
@@ -9,15 +9,21 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+  const navigator = useNavigate();
+  const { signInUser } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
   const [captchaError, setCaptchaError] = useState(false);
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = ({ email, password, captcha }) => {
+  const onSubmit = async ({ email, password, captcha }) => {
     if (validateCaptcha(captcha)) {
-      console.log({ email, password });
+      const user = await signInUser(email, password);
+      if (user.uid) {
+        navigator("/");
+      }
       reset();
       setCaptchaError(false);
     } else {
