@@ -9,7 +9,7 @@ const Tabs = () => {
 
   const [activeTab, setActiveTab] = useState(0);
   const [loading, menu, filterMenu] = useMenu(tabData[activeTab]);
-
+  menu.length;
   useEffect(() => {
     if (category) {
       setActiveTab(tabData.indexOf(category.toLocaleLowerCase()));

@@ -20,27 +20,35 @@ const AuthProvider = ({ children }) => {
   });
 
   const createUser = async (email, pass, name) => {
-    setAuthState((pre) => ({
-      ...pre,
-      loading: true,
-    }));
-    const result = await createUserWithEmailAndPassword(auth, email, pass);
-    await updateProfile(result.user, {
-      displayName: name,
-    });
+    try {
+      setAuthState((pre) => ({
+        ...pre,
+        loading: true,
+      }));
+      const result = await createUserWithEmailAndPassword(auth, email, pass);
+      await updateProfile(result.user, {
+        displayName: name,
+      });
 
-    return result.user;
+      return result.user;
+    } catch (error) {
+      return error.message;
+    }
   };
 
   const signInUser = async (email, pass) => {
-    setAuthState((pre) => ({
-      ...pre,
-      loading: true,
-    }));
-    const { user } = await signInWithEmailAndPassword(auth, email, pass);
-    console.log(authState);
+    try {
+      setAuthState((pre) => ({
+        ...pre,
+        loading: true,
+      }));
+      const { user } = await signInWithEmailAndPassword(auth, email, pass);
+      console.log(authState);
 
-    return user;
+      return user;
+    } catch (error) {
+      return error.message;
+    }
   };
 
   useEffect(() => {
@@ -63,7 +71,7 @@ const AuthProvider = ({ children }) => {
 
   const logOutUser = async () => {
     try {
-      const result = await signOut(auth);
+      await signOut(auth);
       return true;
     } catch (error) {
       return false;
