@@ -4,15 +4,18 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import loginBgImg from "../../assets/others/authentication.png";
 import loginHeroImg from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const navigator = useNavigate();
   const { signInUser } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
@@ -22,7 +25,13 @@ const Login = () => {
     if (validateCaptcha(captcha)) {
       const user = await signInUser(email, password);
       if (user.uid) {
-        navigator("/");
+        navigator(from);
+
+        Swal.fire({
+          title: "Login Success",
+          text: "Take A Look Of",
+          icon: "success",
+        });
       }
       reset();
       setCaptchaError(false);

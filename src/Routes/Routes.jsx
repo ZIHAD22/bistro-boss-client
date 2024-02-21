@@ -5,6 +5,7 @@ import Menu from "../pages/Menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -30,9 +31,11 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          <h1 className="flex items-center justify-center h-screen text-4xl text-red-600 uppercase">
-            under constraction
-          </h1>
+          <PrivateRoute>
+            <h1 className="flex items-center justify-center h-screen text-4xl text-red-600 uppercase">
+              under constraction
+            </h1>
+          </PrivateRoute>
         ),
       },
       {
