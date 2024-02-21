@@ -1,21 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useMenu from "../../hooks/useMenu";
 import OrderCard from "../../pages/Order/OrderCard/OrderCard";
-import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import useStore from "../../hooks/useStore";
 
 const Tabs = () => {
-  const { category } = useParams();
-  const tabData = ["dessert", "pizza", "salad", "soup", "drinks", "offered"];
-
-  const [activeTab, setActiveTab] = useState(0);
+  const {
+    store: { tabData, tabCategory, activeTab },
+    handleStoreData,
+  } = useStore();
   const [loading, menu, filterMenu] = useMenu(tabData[activeTab]);
   menu.length;
   useEffect(() => {
-    if (category) {
-      setActiveTab(tabData.indexOf(category.toLocaleLowerCase()));
+    if (tabCategory) {
+      handleStoreData(
+        "activeTab",
+        tabData.indexOf(tabCategory.toLocaleLowerCase())
+      );
     }
-  }, [category]);
+  }, [tabCategory]);
   if (loading) {
     return <Loading hight="h-[550px]" />;
   }
@@ -36,7 +39,7 @@ const Tabs = () => {
               id="tab-1"
               tabIndex="0"
               onClick={() => {
-                setActiveTab(index);
+                handleStoreData("activeTab", index);
               }}
               className={`relative block h-10 px-6 tab rounded-full ${
                 activeTab === index ? "bg-white border border-b-[#BB8506]" : ""
@@ -58,13 +61,7 @@ const Tabs = () => {
               <Loading hight="h-[550px]" />
             ) : (
               filterMenu.map((item, index) => (
-                <OrderCard
-                  key={index}
-                  img={item.image}
-                  name={item.name}
-                  price={item.price}
-                  recipe={item.recipe}
-                />
+                <OrderCard key={index} item={item} />
               ))
             )}
           </div>

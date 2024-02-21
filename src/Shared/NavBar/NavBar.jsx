@@ -1,3 +1,4 @@
+import { MdShoppingCart } from "react-icons/md";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
@@ -10,7 +11,7 @@ const NavBar = () => {
   const handleLogOut = () => {
     const result = logOutUser();
     if (result) {
-      navigator("/login");
+      navigator("/");
     }
   };
 
@@ -56,14 +57,12 @@ const NavBar = () => {
           CONTACT us
         </NavLink>
       </li>
-      {/* <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
-        <NavLink
-          to="/login"
-          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
-        >
-          login
-        </NavLink>
-      </li> */}
+      <li className="border border-gray-400 py-2 px-1 rounded-lg flex justify-center items-center cursor-pointer">
+        <span>
+          <MdShoppingCart size="25px" />
+        </span>
+        <div className="badge">+99</div>
+      </li>
     </>
   );
   return (
@@ -97,7 +96,7 @@ const NavBar = () => {
           <a className="btn btn-ghost text-xl">Bistro Boss</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu-horizontal px-1">{navOptions}</ul>
+          <ul className="menu-horizontal px-1 items-center">{navOptions}</ul>
         </div>
         <div className="navbar-end">
           {user ? (

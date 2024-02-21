@@ -3,6 +3,7 @@ import Cover from "../../../Shared/Cover/Cover";
 import MenuItem from "../../../Shared/MenuItem/MenuItem";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 import Loading from "../../../Shared/Loading/Loading";
+import useStore from "../../../hooks/useStore";
 
 const MenuCategory = ({
   filterMenu,
@@ -12,10 +13,10 @@ const MenuCategory = ({
   sectionTitle,
   loading,
 }) => {
-  // if (loading) {
-  //   return <h1>loading.....</h1>;
-  // }
-  //   console.log(filterMenu);
+  const { handleStoreData } = useStore();
+  const hanldeMenuCat = () => {
+    handleStoreData("tabCategory", title.toLocaleLowerCase());
+  };
   return (
     <div>
       {title && (
@@ -43,7 +44,10 @@ const MenuCategory = ({
       )}
       <div className="text-center mt-4 mb-5">
         <Link to={`/order/${title === "Our Menu" ? "offered" : title}`}>
-          <button className="btn btn-outline border-0 border-b-2 btn-lg px-20">
+          <button
+            onClick={hanldeMenuCat}
+            className="btn btn-outline border-0 border-b-2 btn-lg px-20"
+          >
             ORDER YOUR FAVOURITE FOOD
           </button>
         </Link>
