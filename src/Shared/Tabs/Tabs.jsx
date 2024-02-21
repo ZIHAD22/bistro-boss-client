@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useMenu from "../../hooks/useMenu";
 import OrderCard from "../../pages/Order/OrderCard/OrderCard";
 import { useParams } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 const Tabs = () => {
   const { category } = useParams();
@@ -16,7 +17,7 @@ const Tabs = () => {
     }
   }, [category]);
   if (loading) {
-    return <h1>loading..........</h1>;
+    return <Loading hight="h-[550px]" />;
   }
   return (
     <div className="mx-auto px-8 sm:px-0">
@@ -53,15 +54,19 @@ const Tabs = () => {
         </div>
         <div className="mt-6">
           <div role="tabpanel" id="panel-1" className="p-6 grid grid-cols-3">
-            {filterMenu.map((item, index) => (
-              <OrderCard
-                key={index}
-                img={item.image}
-                name={item.name}
-                price={item.price}
-                recipe={item.recipe}
-              />
-            ))}
+            {loading ? (
+              <Loading hight="h-[550px]" />
+            ) : (
+              filterMenu.map((item, index) => (
+                <OrderCard
+                  key={index}
+                  img={item.image}
+                  name={item.name}
+                  price={item.price}
+                  recipe={item.recipe}
+                />
+              ))
+            )}
           </div>
         </div>
       </div>

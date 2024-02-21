@@ -9,7 +9,7 @@ const Main = () => {
   const { loading } = useContext(AuthContext);
 
   if (loading) {
-    return <Loading />;
+    return <Loading fullScreen={true} />;
   }
   return (
     <div className="max-w-screen-2xl mx-auto">

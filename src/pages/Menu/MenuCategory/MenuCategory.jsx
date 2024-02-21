@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Cover from "../../../Shared/Cover/Cover";
 import MenuItem from "../../../Shared/MenuItem/MenuItem";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
+import Loading from "../../../Shared/Loading/Loading";
 
 const MenuCategory = ({
   filterMenu,
@@ -32,9 +33,7 @@ const MenuCategory = ({
         <SectionTitle mainHeading="TODAY'S OFFER" subHeading="Don't miss" />
       )}
       {loading ? (
-        <div className="flex justify-center items-center my-20 text-4xl">
-          loading...
-        </div>
+        <Loading hight="h-[150px]" />
       ) : (
         <div className="grid md:grid-cols-2 gap-4 my-10">
           {filterMenu.map((item) => (
