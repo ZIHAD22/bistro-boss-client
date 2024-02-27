@@ -2,17 +2,20 @@ import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import client from "../../../util/axios";
+import { StoreContext } from "../../../provider/StoreProvider";
 
 const OrderCard = ({ item }) => {
-  const { image, name, price, recipe } = item;
+  const { image, name, price, recipe, _id } = item;
 
   // hooks:
   const location = useLocation();
   const navigation = useNavigate();
   const { user } = useContext(AuthContext);
+  const { handleArrayStore } = useContext(StoreContext);
 
   // function:
-  const handleAddToCard = () => {
+  const handleAddToCard = async () => {
     if (!user?.uid) {
       Swal.fire({
         title: "You are not Logged In",
@@ -27,6 +30,29 @@ const OrderCard = ({ item }) => {
           navigation("/login", { state: { from: location } });
         }
       });
+    } else {
+      if (user?.email) {
+        const cartData = {
+          menuId: _id,
+          email: user.email,
+          name,
+          image,
+          price,
+        };
+
+        const { data } = await client.post("/carts", cartData);
+
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${name} added to you cart`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          handleArrayStore("carts", cartData);
+        }
+      }
     }
   };
   return (

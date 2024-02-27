@@ -2,10 +2,14 @@ import { MdShoppingCart } from "react-icons/md";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import { StoreContext } from "../../provider/StoreProvider";
 
 const NavBar = () => {
   const navigator = useNavigate();
   const { user, logOutUser } = useContext(AuthContext);
+  const {
+    store: { carts },
+  } = useContext(StoreContext);
   const location = useLocation();
   const isLogin = location.pathname.includes("login");
   const handleLogOut = () => {
@@ -61,7 +65,7 @@ const NavBar = () => {
         <span>
           <MdShoppingCart size="25px" />
         </span>
-        <div className="badge">+99</div>
+        <div className="badge">{carts?.length}</div>
       </li>
     </>
   );
