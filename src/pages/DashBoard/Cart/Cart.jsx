@@ -18,7 +18,11 @@ const Cart = () => {
         mainHeading="WANNA ADD MORE?"
         margen="mt-6 mb-14"
       />
-      <Table head={tableHead} carts={carts} />
+      {carts.length === 0 ? (
+        <h1 className="flex justify-center items-center text-6xl">No Order</h1>
+      ) : (
+        <Table head={tableHead} carts={carts} />
+      )}
     </div>
   );
 };

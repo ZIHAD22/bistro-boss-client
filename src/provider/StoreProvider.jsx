@@ -9,6 +9,7 @@ const StoreProvider = ({ children }) => {
     carts: [],
     tabCategory: "",
     activeTab: 0,
+    refetch: true,
   });
 
   const handleStoreData = (name, value) => {
@@ -42,14 +43,14 @@ const StoreProvider = ({ children }) => {
   useEffect(() => {
     const initalPreCarts = async () => {
       const { data } = await client("carts");
-      if (data.length !== 0) {
+      if (data) {
         handleStoreData("carts", data);
       }
     };
     return () => {
       initalPreCarts();
     };
-  }, []);
+  }, [store.refetch]);
 
   return (
     <StoreContext.Provider value={storeInfo}>{children}</StoreContext.Provider>
