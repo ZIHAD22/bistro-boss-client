@@ -1,8 +1,9 @@
 import { MdShoppingCart } from "react-icons/md";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { StoreContext } from "../../provider/StoreProvider";
+import CustomNavLink from "../CustomNavLink/CustomNavLink";
 
 const NavBar = () => {
   const navigator = useNavigate();
@@ -21,52 +22,29 @@ const NavBar = () => {
 
   const navOptions = (
     <>
-      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
-        >
-          Home
-        </NavLink>
+      <li className="mr-3 hover:text-[#EEFF25] uppercase">
+        <CustomNavLink to="/">Home</CustomNavLink>
       </li>
-      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
-        <NavLink
-          to="/menu"
-          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
-        >
-          Menu
-        </NavLink>
+      <li className="mr-3 hover:text-[#EEFF25] uppercase">
+        <CustomNavLink to="/menu">Menu</CustomNavLink>
       </li>
-      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
-        <NavLink
-          to="/order"
-          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
-        >
-          Order Food
-        </NavLink>
+      <li className="mr-3 hover:text-[#EEFF25] uppercase">
+        <CustomNavLink to="/order">Order Food</CustomNavLink>
       </li>
-      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
-        >
-          DASHBOARD
-        </NavLink>
+      <li className="mr-3 hover:text-[#EEFF25] uppercase">
+        <CustomNavLink to="/dashboard">DASHBOARD</CustomNavLink>
       </li>
-      <li className={`mr-3 hover:text-[#EEFF25] uppercase`}>
-        <NavLink
-          to="/contact"
-          className={({ isActive }) => (isActive ? "text-[#EEFF25]" : "")}
-        >
-          CONTACT us
-        </NavLink>
+      <li className="mr-3 hover:text-[#EEFF25] uppercase">
+        <CustomNavLink to="/contact">CONTACT us</CustomNavLink>
       </li>
-      <li className="border border-gray-400 py-2 px-1 rounded-lg flex justify-center items-center cursor-pointer">
-        <span>
-          <MdShoppingCart size="25px" />
-        </span>
-        <div className="badge">{carts?.length}</div>
-      </li>
+      <CustomNavLink to="dashboard/cart">
+        <li className="border border-gray-400 py-2 px-1 rounded-lg flex justify-center items-center cursor-pointer">
+          <span>
+            <MdShoppingCart size="25px" />
+          </span>
+          <div className="badge">{carts?.length}</div>
+        </li>
+      </CustomNavLink>
     </>
   );
   return (
