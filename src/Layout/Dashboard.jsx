@@ -14,11 +14,11 @@ const Dashboard = () => {
   return (
     <div className="drawer lg:drawer-open max-w-screen-2xl mx-auto">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-start">
+      <div className="drawer-content flex flex-col items-center justify-start">
         <label htmlFor="my-drawer-2" className="btn drawer-button lg:hidden">
           <HiOutlineBars3 />
         </label>
-        <div>
+        <div className="w-full">
           <Outlet />
         </div>
       </div>
