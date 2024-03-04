@@ -1,9 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import client from "../util/axios";
+import { AuthContext } from "./AuthProvider";
 
 export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
+  const { user } = useContext(AuthContext);
+  // console.log(user);
   const [store, setStore] = useState({
     tabData: ["dessert", "pizza", "salad", "soup", "drinks", "offered"],
     carts: [],
@@ -42,15 +45,19 @@ const StoreProvider = ({ children }) => {
 
   useEffect(() => {
     const initalPreCarts = async () => {
-      const { data } = await client("carts");
-      if (data) {
-        handleStoreData("carts", data);
+      if (user?.uid) {
+        console.log(user, "in");
+        const { data } = await client(`carts/${user.email}`);
+        if (data) {
+          handleStoreData("carts", data);
+        }
       }
     };
-    return () => {
-      initalPreCarts();
-    };
-  }, [store.refetch]);
+    initalPreCarts();
+    // return () => {
+    //   initalPreCarts();
+    // };
+  }, [store.refetch, user]);
 
   return (
     <StoreContext.Provider value={storeInfo}>{children}</StoreContext.Provider>

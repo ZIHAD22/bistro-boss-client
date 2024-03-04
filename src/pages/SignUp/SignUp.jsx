@@ -6,6 +6,8 @@ import loginHeroImg from "../../assets/others/authentication2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import client from "../../util/axios";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const navigator = useNavigate();
@@ -16,7 +18,15 @@ const SignUp = () => {
   const onSubmit = async ({ name, email, password: pass }) => {
     const user = await createUser(email, pass, name);
     if (user.uid) {
-      navigator("/");
+      const { data } = await client.post("/user", { name, email });
+      if (data.insertedId) {
+        navigator("/");
+        Swal.fire({
+          title: "Sign In",
+          text: "Sign in success",
+          icon: "success",
+        });
+      }
     }
     reset();
   };

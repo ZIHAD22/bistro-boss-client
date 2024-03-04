@@ -10,12 +10,14 @@ const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
   const {
     store: { carts },
+    handleStoreData,
   } = useContext(StoreContext);
   const location = useLocation();
   const isLogin = location.pathname.includes("login");
   const handleLogOut = () => {
     const result = logOutUser();
     if (result) {
+      handleStoreData("carts", []);
       navigator("/");
     }
   };

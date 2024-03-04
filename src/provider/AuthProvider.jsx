@@ -13,9 +13,7 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
-    user: {
-      name: "zihad",
-    },
+    user: {},
     loading: true,
   });
 

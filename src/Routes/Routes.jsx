@@ -31,16 +31,6 @@ export const router = createBrowserRouter([
         element: <Order />,
       },
       {
-        path: "/dashboard",
-        element: (
-          <PrivateRoute>
-            <h1 className="flex items-center justify-center h-screen text-4xl text-red-600 uppercase">
-              under constraction
-            </h1>
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "/contact",
         element: (
           <h1 className="flex items-center justify-center h-screen text-4xl text-red-600 uppercase">
@@ -60,7 +50,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "cart",
